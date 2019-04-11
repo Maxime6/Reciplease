@@ -10,12 +10,14 @@
 		2D10BC5CEA351085BDB3C8E7 /* Pods_RecipleaseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD1D01BD56A4E4AB1385A78 /* Pods_RecipleaseTests.framework */; };
 		84333D3135755E2A2B6C5C1A /* Pods_Reciplease.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E98C0C86FD4B35958DC42A3 /* Pods_Reciplease.framework */; };
 		AF877B8F225C9C8E00CD767A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF877B8E225C9C8E00CD767A /* AppDelegate.swift */; };
-		AF877B91225C9C8E00CD767A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF877B90225C9C8E00CD767A /* ViewController.swift */; };
 		AF877B94225C9C8E00CD767A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF877B92225C9C8E00CD767A /* Main.storyboard */; };
 		AF877B97225C9C8E00CD767A /* Reciplease.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = AF877B95225C9C8E00CD767A /* Reciplease.xcdatamodeld */; };
 		AF877B99225C9C8F00CD767A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF877B98225C9C8F00CD767A /* Assets.xcassets */; };
 		AF877B9C225C9C8F00CD767A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF877B9A225C9C8F00CD767A /* LaunchScreen.storyboard */; };
 		AF877BA7225C9C8F00CD767A /* RecipleaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF877BA6225C9C8F00CD767A /* RecipleaseTests.swift */; };
+		AF877BB6225CB62900CD767A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF877BB5225CB62900CD767A /* SearchViewController.swift */; };
+		AF877BB8225CB63B00CD767A /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF877BB7225CB63B00CD767A /* FavoriteViewController.swift */; };
+		AF877BBA225E0C0600CD767A /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF877BB9225E0C0600CD767A /* RecipesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,6 @@
 		AA488A2162A6621CF0D2B68B /* Pods-Reciplease.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Reciplease.debug.xcconfig"; path = "Target Support Files/Pods-Reciplease/Pods-Reciplease.debug.xcconfig"; sourceTree = "<group>"; };
 		AF877B8B225C9C8E00CD767A /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF877B8E225C9C8E00CD767A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF877B90225C9C8E00CD767A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AF877B93225C9C8E00CD767A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF877B96225C9C8E00CD767A /* Reciplease.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Reciplease.xcdatamodel; sourceTree = "<group>"; };
 		AF877B98225C9C8F00CD767A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,6 +47,9 @@
 		AF877BA2225C9C8F00CD767A /* RecipleaseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF877BA6225C9C8F00CD767A /* RecipleaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseTests.swift; sourceTree = "<group>"; };
 		AF877BA8225C9C8F00CD767A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF877BB5225CB62900CD767A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		AF877BB7225CB63B00CD767A /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		AF877BB9225E0C0600CD767A /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +80,6 @@
 				4FE4475601393F78BD923C5D /* Pods-RecipleaseTests.debug.xcconfig */,
 				36CC6D49A56FFE9A8B12E53C /* Pods-RecipleaseTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -103,13 +106,10 @@
 		AF877B8D225C9C8E00CD767A /* Reciplease */ = {
 			isa = PBXGroup;
 			children = (
-				AF877B8E225C9C8E00CD767A /* AppDelegate.swift */,
-				AF877B90225C9C8E00CD767A /* ViewController.swift */,
-				AF877B92225C9C8E00CD767A /* Main.storyboard */,
-				AF877B98225C9C8F00CD767A /* Assets.xcassets */,
-				AF877B9A225C9C8F00CD767A /* LaunchScreen.storyboard */,
-				AF877B9D225C9C8F00CD767A /* Info.plist */,
-				AF877B95225C9C8E00CD767A /* Reciplease.xcdatamodeld */,
+				AF877BB2225CA3B200CD767A /* Model */,
+				AF877BB3225CA3B900CD767A /* View */,
+				AF877BB4225CA3BE00CD767A /* Controller */,
+				AF877BB1225CA38B00CD767A /* Supporting Files */,
 			);
 			path = Reciplease;
 			sourceTree = "<group>";
@@ -121,6 +121,43 @@
 				AF877BA8225C9C8F00CD767A /* Info.plist */,
 			);
 			path = RecipleaseTests;
+			sourceTree = "<group>";
+		};
+		AF877BB1225CA38B00CD767A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AF877B8E225C9C8E00CD767A /* AppDelegate.swift */,
+				AF877B98225C9C8F00CD767A /* Assets.xcassets */,
+				AF877B9A225C9C8F00CD767A /* LaunchScreen.storyboard */,
+				AF877B9D225C9C8F00CD767A /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AF877BB2225CA3B200CD767A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AF877B95225C9C8E00CD767A /* Reciplease.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AF877BB3225CA3B900CD767A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AF877B92225C9C8E00CD767A /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AF877BB4225CA3BE00CD767A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AF877BB9225E0C0600CD767A /* RecipesViewController.swift */,
+				AF877BB5225CB62900CD767A /* SearchViewController.swift */,
+				AF877BB7225CB63B00CD767A /* FavoriteViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		CF3BAAFCDEA001ED29F6B919 /* Frameworks */ = {
@@ -305,8 +342,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF877BB6225CB62900CD767A /* SearchViewController.swift in Sources */,
 				AF877B97225C9C8E00CD767A /* Reciplease.xcdatamodeld in Sources */,
-				AF877B91225C9C8E00CD767A /* ViewController.swift in Sources */,
+				AF877BB8225CB63B00CD767A /* FavoriteViewController.swift in Sources */,
+				AF877BBA225E0C0600CD767A /* RecipesViewController.swift in Sources */,
 				AF877B8F225C9C8E00CD767A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,7 +511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WC244SYFG3;
-				INFOPLIST_FILE = Reciplease/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Reciplease/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -491,7 +530,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WC244SYFG3;
-				INFOPLIST_FILE = Reciplease/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Reciplease/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
