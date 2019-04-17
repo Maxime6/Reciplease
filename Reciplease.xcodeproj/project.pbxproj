@@ -18,6 +18,12 @@
 		AF877BB6225CB62900CD767A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF877BB5225CB62900CD767A /* SearchViewController.swift */; };
 		AF877BB8225CB63B00CD767A /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF877BB7225CB63B00CD767A /* FavoriteViewController.swift */; };
 		AF877BBA225E0C0600CD767A /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF877BB9225E0C0600CD767A /* RecipesViewController.swift */; };
+		AF877BBD225FCDCB00CD767A /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF877BBC225FCDCB00CD767A /* UIViewController.swift */; };
+		AF877BBF226098BA00CD767A /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF877BBE226098BA00CD767A /* RecipeTableViewCell.swift */; };
+		AFB7936F2267249A00C33AA1 /* RecipesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB7936E2267249A00C33AA1 /* RecipesData.swift */; };
+		AFB79371226725CA00C33AA1 /* YummlyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB79370226725CA00C33AA1 /* YummlyProtocol.swift */; };
+		AFB79373226725D500C33AA1 /* YummlySession.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB79372226725D500C33AA1 /* YummlySession.swift */; };
+		AFB79375226725E200C33AA1 /* YummlyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB79374226725E200C33AA1 /* YummlyService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +56,12 @@
 		AF877BB5225CB62900CD767A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		AF877BB7225CB63B00CD767A /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		AF877BB9225E0C0600CD767A /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
+		AF877BBC225FCDCB00CD767A /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		AF877BBE226098BA00CD767A /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
+		AFB7936E2267249A00C33AA1 /* RecipesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesData.swift; sourceTree = "<group>"; };
+		AFB79370226725CA00C33AA1 /* YummlyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YummlyProtocol.swift; sourceTree = "<group>"; };
+		AFB79372226725D500C33AA1 /* YummlySession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YummlySession.swift; sourceTree = "<group>"; };
+		AFB79374226725E200C33AA1 /* YummlyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YummlyService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +118,7 @@
 		AF877B8D225C9C8E00CD767A /* Reciplease */ = {
 			isa = PBXGroup;
 			children = (
+				AF877BBB225FCD8000CD767A /* Extension */,
 				AF877BB2225CA3B200CD767A /* Model */,
 				AF877BB3225CA3B900CD767A /* View */,
 				AF877BB4225CA3BE00CD767A /* Controller */,
@@ -138,6 +151,10 @@
 			isa = PBXGroup;
 			children = (
 				AF877B95225C9C8E00CD767A /* Reciplease.xcdatamodeld */,
+				AFB7936E2267249A00C33AA1 /* RecipesData.swift */,
+				AFB79370226725CA00C33AA1 /* YummlyProtocol.swift */,
+				AFB79372226725D500C33AA1 /* YummlySession.swift */,
+				AFB79374226725E200C33AA1 /* YummlyService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				AF877B92225C9C8E00CD767A /* Main.storyboard */,
+				AF877BBE226098BA00CD767A /* RecipeTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -158,6 +176,14 @@
 				AF877BB7225CB63B00CD767A /* FavoriteViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		AF877BBB225FCD8000CD767A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				AF877BBC225FCDCB00CD767A /* UIViewController.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		CF3BAAFCDEA001ED29F6B919 /* Frameworks */ = {
@@ -343,7 +369,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF877BB6225CB62900CD767A /* SearchViewController.swift in Sources */,
+				AFB7936F2267249A00C33AA1 /* RecipesData.swift in Sources */,
+				AFB79375226725E200C33AA1 /* YummlyService.swift in Sources */,
+				AFB79371226725CA00C33AA1 /* YummlyProtocol.swift in Sources */,
 				AF877B97225C9C8E00CD767A /* Reciplease.xcdatamodeld in Sources */,
+				AF877BBD225FCDCB00CD767A /* UIViewController.swift in Sources */,
+				AFB79373226725D500C33AA1 /* YummlySession.swift in Sources */,
+				AF877BBF226098BA00CD767A /* RecipeTableViewCell.swift in Sources */,
 				AF877BB8225CB63B00CD767A /* FavoriteViewController.swift in Sources */,
 				AF877BBA225E0C0600CD767A /* RecipesViewController.swift in Sources */,
 				AF877B8F225C9C8E00CD767A /* AppDelegate.swift in Sources */,
