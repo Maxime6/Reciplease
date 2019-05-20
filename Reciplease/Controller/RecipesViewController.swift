@@ -11,18 +11,33 @@ import UIKit
 class RecipesViewController: UIViewController {
     
     let yummlyService = YummlyService()
+    var recipeData: RecipesData?
+    var recipeDetailsData: RecipeDetailsData?
+    var ingredients = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Reciplease"
+        
     }
     
-    func networkCall() {
-        yummlyService.getRecipes { (success, recipesData) in
-            if success, let recipesData = recipesData {
-                
+    
+    func networkCall(indexPath: IndexPath) {
+        guard let recipeId = recipeData?.matches[indexPath.row].id else { return }
+        yummlyService.getDetailsRecipes(recipeId: recipeId) { (success, recipeDetailsData) in
+            if success, let recipeDetailsData = recipeDetailsData {
+                self.recipeDetailsData = recipeDetailsData
+                self.performSegue(withIdentifier: "segueToDetails", sender: self)
             } else {
-                self.displayAlert(title: "Error", message: "Recipes can not be found, please try again later.", preferredStyle: .alert)
+                self.displayAlert(title: "Error", message: "Details not found, please try again later.", preferredStyle: .alert)
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToDetails" {
+            let detailsOfRecipesVC = segue.destination as! DetailsOfRecipeViewController
+            detailsOfRecipesVC.recipeDetailsData = recipeDetailsData
         }
     }
 
@@ -33,15 +48,26 @@ extension RecipesViewController: UITableViewDataSource {
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        guard let recipeData = recipeData else { return 0 }
+        return recipeData.matches.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as? RecipeTableViewCell else {
             return UITableViewCell()
         }
+        guard let recipeData = recipeData else { return UITableViewCell() }
+        cell.recipe = recipeData.matches[indexPath.row]
         return cell
     }
     
+}
+
+extension RecipesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        
+        networkCall(indexPath: indexPath)
+    }
     
 }

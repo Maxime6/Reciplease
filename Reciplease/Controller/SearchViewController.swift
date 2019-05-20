@@ -15,40 +15,41 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var searchForRecipesButton: UIButton!
+    @IBOutlet weak var searchingRecipesActivityIndicator: UIActivityIndicatorView!
     
     var ingredients = [String]()
+    let yummlyService = YummlyService()
+    var recipeData: RecipesData?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        buttonsSettings()
+        buttonsSettings(buttons: [addButton, clearButton, searchForRecipesButton])
+        
     }
     
-    func buttonsSettings() {
-        addButton.layer.cornerRadius = 5
-        addButton.layer.shadowOffset = CGSize(width: 0, height: 3)
-        addButton.layer.shadowColor = UIColor(ciColor: .black).cgColor
-        addButton.layer.shadowRadius = 5
-        addButton.layer.shadowOpacity = 0.3
+    override func viewWillAppear(_ animated: Bool) {
+        searchForRecipesButton.isHidden = false
+        searchingRecipesActivityIndicator.isHidden = true
+    }
+    
+    func buttonsSettings(buttons: [UIButton]) {
+        for button in buttons {
+            button.layer.cornerRadius = 5
+            button.layer.shadowOffset = CGSize(width: 0, height: 3)
+            button.layer.shadowColor = UIColor(ciColor: .black).cgColor
+            button.layer.shadowRadius = 5
+            button.layer.shadowOpacity = 0.3
+        }
         
-        clearButton.layer.cornerRadius = 5
-        clearButton.layer.shadowOffset = CGSize(width: 0, height: 3)
-        clearButton.layer.shadowColor = UIColor(ciColor: .black).cgColor
-        clearButton.layer.shadowRadius = 5
-        clearButton.layer.shadowOpacity = 0.3
-        
-        searchForRecipesButton.layer.cornerRadius = 5
-        searchForRecipesButton.layer.shadowOffset = CGSize(width: 0, height: 3)
-        searchForRecipesButton.layer.shadowColor = UIColor(ciColor: .black).cgColor
-        searchForRecipesButton.layer.shadowRadius = 5
-        searchForRecipesButton.layer.shadowOpacity = 0.5
     }
 
     @IBAction func addIngredientButton() {
-        guard let ingredient = ingredientsTextField.text else { return }
-        if ingredient.isEmpty {
+        guard let ingredientsText = ingredientsTextField.text else { return }
+        
+        if ingredientsText.isEmpty {
             displayAlert(title: "Warning", message: "Please enter an ingredient", preferredStyle: .alert)
         } else {
-            ingredients.append(ingredient)
+            ingredients += ingredientsText.transformToArrayWithoutPonctuation
             ingredientsListTableView.reloadData()
             ingredientsTextField.text = ""
         }
@@ -61,7 +62,32 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func searchingRecipesButton(_ sender: Any) {
+        if ingredients.isEmpty == true {
+            displayAlert(title: "Warning", message: "Please enter one or more ingredients to find recipes.", preferredStyle: .alert)
+        } else {
+            searchForRecipesButton.isHidden = true
+            searchingRecipesActivityIndicator.isHidden = false
+            networkCall()
+        }
         
+    }
+    
+    func networkCall() {
+        yummlyService.getRecipes(ingrdients: ingredients) { (success, recipesData) in
+            if success, let recipesData = recipesData {
+                self.recipeData = recipesData
+                self.performSegue(withIdentifier: "segueToRecipes", sender: self)
+            } else {
+                self.displayAlert(title: "Error", message: "Recipes can not be found, please try again later.", preferredStyle: .alert)
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "segueToRecipes" {
+            let recipesVC = segue.destination as! RecipesViewController
+            recipesVC.recipeData = recipeData
+        }
     }
     
 }
@@ -83,3 +109,4 @@ extension SearchViewController: UITableViewDataSource {
     
     
 }
+
