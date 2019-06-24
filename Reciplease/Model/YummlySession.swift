@@ -19,11 +19,11 @@ class YummlySession: YummlyProtocol {
         }
     }
     
-    func imageRequest(url: URL, completionHandler: @escaping (DataResponse<Data>) -> Void) {
-        Alamofire.request(url).responseData { (responseData) in
-            completionHandler(responseData)
-        }
-    }
+//    func imageRequest(url: URL, completionHandler: @escaping (DataResponse<Data>) -> Void) {
+//        Alamofire.request(url).responseData { (responseData) in
+//            completionHandler(responseData)
+//        }
+//    }
     
     func buildRequest(ingredients: [String]) {
         // ajouter les ingrédient allowedIngredients a urlStringApi

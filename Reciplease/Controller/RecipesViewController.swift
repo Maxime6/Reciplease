@@ -53,7 +53,7 @@ extension RecipesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as? RecipeTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as? CustomRecipeTableViewCell else {
             return UITableViewCell()
         }
         guard let recipeData = recipeData else { return UITableViewCell() }

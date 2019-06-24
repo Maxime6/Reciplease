@@ -12,6 +12,7 @@ class DetailsOfRecipeViewController: UIViewController {
     
     var recipeData: RecipesData?
     var recipeDetailsData: RecipeDetailsData?
+    var favoriteRecipesList = Recipe.fetchAll()
 
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var preparationTimeLabel: UILabel!
@@ -28,6 +29,7 @@ class DetailsOfRecipeViewController: UIViewController {
         navigationItem.title = "Reciplease"
         displayImage()
         backBarButtonSettings()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "favoriteButton"), style: .plain, target: self, action: #selector(addToFavorites))
 
     }
     
@@ -71,6 +73,15 @@ class DetailsOfRecipeViewController: UIViewController {
         if let imageData: NSData = NSData(contentsOf: imageUrl) {
             recipeImageView.image = UIImage(data: imageData as Data)
         }
+    }
+    
+    @objc func addToFavorites(indexPath: IndexPath) {
+        let favoriteRecipe = Recipe(context: AppDelegate.viewContext)
+//        favoriteRecipe.name = recipeData?.matches[indexPath.row].recipeName
+        favoriteRecipe.name = recipeDetailsData?.name
+        favoriteRecipe.rating = recipeData?.matches[indexPath.row].rating.description
+        favoriteRecipe.time = recipeData?.matches[indexPath.row].totalTimeInSeconds.description
+        try? AppDelegate.viewContext.save()
     }
     
 }

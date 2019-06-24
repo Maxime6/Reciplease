@@ -10,7 +10,6 @@ import Foundation
 class YummlyService {
     
     private var yummlySession: YummlySession
-    var recipe: Match?
     
     init(yummlySession: YummlySession = YummlySession()) {
         self.yummlySession = yummlySession
@@ -56,25 +55,25 @@ class YummlyService {
         }
     }
     
-    func getImagesData(completionHandler: @escaping (Data?) -> Void) {
-        guard let imageUrl = recipe?.smallImageUrls?[0] else { return }
-        guard let url = URL(string: imageUrl) else { return }
-        yummlySession.imageRequest(url: url, completionHandler: { (responseData) in
-            guard responseData.response?.statusCode == 200 else {
-                completionHandler(nil)
-                return
-            }
-            guard let data = responseData.data else {
-                completionHandler(nil)
-                return
-            }
-            guard let imageData = try? JSONDecoder().decode(Data.self, from: data) else {
-                completionHandler(nil)
-                return
-            }
-            completionHandler(imageData)
-        })
-    }
+//    func getImagesData(completionHandler: @escaping (Data?) -> Void) {
+//        guard let imageUrl = recipe?.smallImageUrls?[0] else { return }
+//        guard let url = URL(string: imageUrl) else { return }
+//        yummlySession.imageRequest(url: url, completionHandler: { (responseData) in
+//            guard responseData.response?.statusCode == 200 else {
+//                completionHandler(nil)
+//                return
+//            }
+//            guard let data = responseData.data else {
+//                completionHandler(nil)
+//                return
+//            }
+//            guard let imageData = try? JSONDecoder().decode(Data.self, from: data) else {
+//                completionHandler(nil)
+//                return
+//            }
+//            completionHandler(imageData)
+//        })
+//    }
     
 }
 
