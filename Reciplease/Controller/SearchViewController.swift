@@ -10,6 +10,8 @@ import UIKit
 
 class SearchViewController: UIViewController {
 
+    //MARK: - Outlets
+    
     @IBOutlet weak var ingredientsListTableView: UITableView!
     @IBOutlet weak var ingredientsTextField: UITextField!
     @IBOutlet weak var addButton: UIButton!
@@ -17,9 +19,13 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchForRecipesButton: UIButton!
     @IBOutlet weak var searchingRecipesActivityIndicator: UIActivityIndicatorView!
     
-    var ingredients = [String]()
-    let yummlyService = YummlyService()
-    var recipeData: RecipesData?
+    //MARK: - Properties
+    
+    private var ingredients = [String]()
+    private let yummlyService = YummlyService()
+    private var recipeData: RecipesData?
+    
+    // MARK: - View Life cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,18 +37,9 @@ class SearchViewController: UIViewController {
         searchForRecipesButton.isHidden = false
         searchingRecipesActivityIndicator.isHidden = true
     }
-    
-    func buttonsSettings(buttons: [UIButton]) {
-        for button in buttons {
-            button.layer.cornerRadius = 5
-            button.layer.shadowOffset = CGSize(width: 0, height: 3)
-            button.layer.shadowColor = UIColor(ciColor: .black).cgColor
-            button.layer.shadowRadius = 5
-            button.layer.shadowOpacity = 0.3
-        }
-        
-    }
 
+    //MARK: - Actions
+    
     @IBAction func addIngredientButton() {
         guard let ingredientsText = ingredientsTextField.text else { return }
         
@@ -54,11 +51,15 @@ class SearchViewController: UIViewController {
             ingredientsTextField.text = ""
         }
         
+        ingredientsTextField.resignFirstResponder()
+        
     }
     
     @IBAction func clearIngredientsListButton(_ sender: Any) {
         ingredients.removeAll()
         ingredientsListTableView.reloadData()
+        searchForRecipesButton.isHidden = false
+        searchingRecipesActivityIndicator.isHidden = true
     }
     
     @IBAction func searchingRecipesButton(_ sender: Any) {
@@ -72,7 +73,25 @@ class SearchViewController: UIViewController {
         
     }
     
-    func networkCall() {
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        ingredientsTextField.resignFirstResponder()
+    }
+    
+    //MARK: - Class Methods
+    
+    private func buttonsSettings(buttons: [UIButton]) {
+        for button in buttons {
+            button.layer.cornerRadius = 5
+            button.layer.shadowOffset = CGSize(width: 0, height: 3)
+            button.layer.shadowColor = UIColor(ciColor: .black).cgColor
+            button.layer.shadowRadius = 5
+            button.layer.shadowOpacity = 0.3
+        }
+        
+    }
+    
+    // Network call to find recipes
+    private func networkCall() {
         yummlyService.getRecipes(ingrdients: ingredients) { (success, recipesData) in
             if success, let recipesData = recipesData {
                 self.recipeData = recipesData
@@ -86,11 +105,13 @@ class SearchViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToRecipes" {
             let recipesVC = segue.destination as! RecipesViewController
-            recipesVC.recipeData = recipeData
+            recipesVC.recipesData = recipeData
         }
     }
     
 }
+
+//MARK: - TableView DataSource
 
 extension SearchViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -107,6 +128,14 @@ extension SearchViewController: UITableViewDataSource {
         return cell
     }
     
-    
+}
+
+//MARK: - TextField Delegate
+
+extension SearchViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 

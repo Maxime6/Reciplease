@@ -11,4 +11,10 @@ import CoreData
 
 class Ingredient: NSManagedObject {
     
+    static func create(name: String, recipe: Recipe, viewContext: NSManagedObjectContext = AppDelegate.viewContext) {
+        let favoriteIngredient = Ingredient(context: viewContext)
+        favoriteIngredient.name = name
+        favoriteIngredient.recipe = recipe
+    }
+    
 }

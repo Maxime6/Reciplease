@@ -11,7 +11,6 @@ import Alamofire
 
 protocol YummlyProtocol {
     var searchRecipeUrlStringApi: String { get }
-    // autre Url pour get recipe
     var getRecipeUrlStringApi: String { get }
     func request(url: URL, completionHandler: @escaping (DataResponse<Any>) -> Void)
 }

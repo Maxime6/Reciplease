@@ -19,14 +19,7 @@ class YummlySession: YummlyProtocol {
         }
     }
     
-//    func imageRequest(url: URL, completionHandler: @escaping (DataResponse<Data>) -> Void) {
-//        Alamofire.request(url).responseData { (responseData) in
-//            completionHandler(responseData)
-//        }
-//    }
-    
     func buildRequest(ingredients: [String]) {
-        // ajouter les ingrédient allowedIngredients a urlStringApi
         let allowedIngredients = ingredients
         for ingredient in allowedIngredients {
             guard let parameter = "&allowedIngredient[]=\(ingredient)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return }

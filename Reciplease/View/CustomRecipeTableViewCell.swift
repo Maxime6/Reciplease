@@ -10,6 +10,7 @@ import UIKit
 
 class CustomRecipeTableViewCell: UITableViewCell {
     
+    //MARK: - Outlets
     
     @IBOutlet weak var recipeView: UIView!
     @IBOutlet weak var infosView: UIView!
@@ -21,30 +22,44 @@ class CustomRecipeTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingImageView: UIImageView!
     @IBOutlet weak var recipeTimeImageView: UIImageView!
     
+    //MARK: - Properties
     
     var yummlyService: YummlyService?
-    var downloadDataService: DownloadDataService?
     
+    // To display recipe infos
     var recipe: Match? {
         didSet {
-            //            displayImage()
             recipeNameLabel.text = recipe?.recipeName
             recipeIngredientsLabel.text = recipe?.ingredients.joined(separator: ", ")
             ratingLabel.text = recipe?.rating.description
-            //            preparationTimeLabel.text = recipe?.totalTimeInSeconds.description
             calculateTimeInMinute()
             if let imageStringUrl = recipe?.smallImageUrls?[0].updateSizeOfUrlImage {
-                DownloadDataService.getData(with: imageStringUrl) { (data) in
-                    guard let data = data else { return }
-                    self.recipeImageView.image = UIImage(data: data)
-                }
+                guard let data = imageStringUrl.data else { return }
+                self.recipeImageView.image = UIImage(data: data)
             } else {
-                // config image par defaut
+                self.recipeImageView.image = #imageLiteral(resourceName: "defaultPicture")
             }
             
         }
     }
     
+    // To display favorite recipe infos
+    var favoriteRecipe: Recipe? {
+        didSet {
+            recipeNameLabel.text = favoriteRecipe?.name
+            ratingLabel.text = favoriteRecipe?.rating?.description
+            guard let time = favoriteRecipe?.time else { return }
+            recipeTimeLabel.text = time.description + "m"
+            let ingredientEntities = favoriteRecipe?.ingredients?.allObjects as? [Ingredient]
+            let ingredients = ingredientEntities?.map({ $0.name ?? "" }).joined(separator: ", ") ?? ""
+            recipeIngredientsLabel.text = ingredients
+            guard let data = favoriteRecipe?.image else { return }
+            recipeImageView.image = UIImage(data: data)
+            // image par defaut
+        }
+    }
+    
+    //MARK: - Class Methods
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -61,15 +76,6 @@ class CustomRecipeTableViewCell: UITableViewCell {
         infosView.layer.borderWidth = 0.5
         infosView.layer.borderColor = UIColor(ciColor: .white).cgColor
         infosView.layer.cornerRadius = 3
-    }
-    
-    func displayImage() {
-        guard let imageStringUrl = recipe?.smallImageUrls?[0].updateSizeOfUrlImage else { return }
-        print(imageStringUrl)
-        guard let imageUrl = URL(string: imageStringUrl) else { return }
-        if let imageData: NSData = NSData(contentsOf: imageUrl) {
-            recipeImageView.image = UIImage(data: imageData as Data)
-        }
     }
     
     func calculateTimeInMinute() {
